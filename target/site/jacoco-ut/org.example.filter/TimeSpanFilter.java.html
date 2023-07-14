@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TimeSpanFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">test-evosuite</a> &gt; <a href="index.source.html" class="el_package">org.example.filter</a> &gt; <span class="el_source">TimeSpanFilter.java</span></div><h1>TimeSpanFilter.java</h1><pre class="source lang-java linenums">package org.example.filter;
+
+import org.example.Flight;
+import org.example.Headers;
+import org.example.Time;
+
+import java.util.List;
+
+<span class="fc" id="L9">public class TimeSpanFilter extends Filter {</span>
+    private int departureDate;
+    private Time minTime;
+    private Time maxTime;
+    private boolean minTimeEntered;
+    private boolean maxTimeEntered;
+    @Override
+    public void read(Input input) {
+<span class="fc" id="L17">        departureDate = input.getDepartureDate();</span>
+<span class="fc" id="L18">        minTime = input.getMinTime();</span>
+<span class="fc" id="L19">        maxTime = input.getMaxTime();</span>
+<span class="fc" id="L20">        minTimeEntered = input.isMinTimeEntered();</span>
+<span class="fc" id="L21">        maxTimeEntered = input.isMaxTimeEntered();</span>
+<span class="fc" id="L22">    }</span>
+
+    @Override
+    public boolean apply(List&lt;Flight&gt; flights) {
+<span class="pc bpc" id="L26" title="5 of 6 branches missed.">        if (departureDate == Headers.NOT_ENTERED &amp;&amp; (minTimeEntered || maxTimeEntered)) {</span>
+<span class="nc" id="L27">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="pc bpc" id="L29" title="5 of 6 branches missed.">        if (departureDate == Headers.NOT_ENTERED &amp;&amp; !minTimeEntered &amp;&amp; !maxTimeEntered) {</span>
+<span class="nc" id="L30">            return false;</span>
+        }
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if (!minTimeEntered) {</span>
+<span class="nc" id="L33">            minTime = new Time(0, 0);</span>
+        }
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if (!maxTimeEntered) {</span>
+<span class="fc" id="L36">            maxTime = new Time(23, 59);</span>
+        }
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        for (Flight flight : flights) {</span>
+<span class="nc" id="L39">            flight.applyTimeSpanFilter(departureDate, minTime, maxTime);</span>
+<span class="nc" id="L40">        }</span>
+<span class="fc" id="L41">        return true;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

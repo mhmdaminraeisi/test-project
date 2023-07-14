@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Headers.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">test-evosuite</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">Headers.java</span></div><h1>Headers.java</h1><pre class="source lang-java linenums">package org.example;
+
+import org.example.filter.Input;
+
+<span class="fc" id="L5">public class Headers {</span>
+    public static final String DELIMITER = &quot;,&quot;;
+    public static final String TIME_DELIMITER = &quot;:&quot;;
+    public static final int NOT_ENTERED = -1;
+    public static final String EMPTY_STRING = &quot;&quot;;
+    public static final String SHOW_DELIMITER = &quot; &quot;;
+    public static final String OK = &quot;OK\n&quot;;
+    public static final String BAD_REQUEST = &quot;Bad Request\n&quot;;
+    public static final String PERMISSION_DENIED = &quot;Permission Denied\n&quot;;
+    public static final String EMPTY = &quot;Empty\n&quot;;
+    public static final String NOT_FOUND = &quot;Not Found\n&quot;;
+    public static final String GET = &quot;GET&quot;;
+    public static final String POST = &quot;POST&quot;;
+    public static final String DELETE = &quot;DELETE&quot;;
+    public static final String SIGNUP = &quot;signup&quot;;
+    public static final String LOGIN = &quot;login&quot;;
+    public static final String LOGOUT = &quot;logout&quot;;
+    public static final String WALLET = &quot;wallet&quot;;
+    public static final String FLIGHTS = &quot;flights&quot;;
+    public static final String TICKETS = &quot;tickets&quot;;
+    public static final String FILTERS = &quot;filters&quot;;
+    public static final String USERNAME = &quot;username&quot;;
+    public static final String PASSWORD = &quot;password&quot;;
+    public static final String AMOUNT = &quot;amount&quot;;
+    public static final String ID = &quot;id&quot;;
+    public static final String FLIGHT = &quot;flight&quot;;
+    public static final String QUANTITY = &quot;quantity&quot;;
+    public static final String CLASS = &quot;class&quot;;
+    public static final String TYPE = &quot;type&quot;;
+    public static final String ECONOMY = &quot;economy&quot;;
+    public static final String BUSINESS = &quot;business&quot;;
+    public static final String SYSTEMI = &quot;nonrefundable&quot;;
+    public static final String CHARTERY = &quot;refundable&quot;;
+    public static final String FROM = &quot;from&quot;;
+    public static final String TO = &quot;to&quot;;
+    public static final String MIN_PRICE = &quot;min_price&quot;;
+    public static final String MAX_PRICE = &quot;max_price&quot;;
+    public static final String AIRLINE = &quot;airline&quot;;
+    public static final String DEPARTURE_DATE = &quot;departure_date&quot;;
+    public static final String MIN_DEPARTURE_TIME = &quot;min_departure_time&quot;;
+    public static final String MAX_DEPARTURE_TIME = &quot;max_departure_time&quot;;
+    public static final double FRACTION = 2.5;
+    public static final double NOT_ENTERED_FLOAT = -1;
+    public static final char THE_SIGN = '?';
+<span class="fc" id="L49">    public static final Input EMPTY_INPUT = new Input(</span>
+            EMPTY_STRING, EMPTY_STRING, EMPTY_STRING,
+            NOT_ENTERED_FLOAT, NOT_ENTERED_FLOAT,
+            false, false,
+            NOT_ENTERED, new Time(), new Time(),
+            false, false
+    );
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

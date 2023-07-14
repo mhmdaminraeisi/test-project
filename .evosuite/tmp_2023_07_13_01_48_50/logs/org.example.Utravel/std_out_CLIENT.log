@@ -1,0 +1,79 @@
+* Starting client
+* Connecting to master process on port 12440
+* Analyzing classpath: 
+  - C:\Users\Amin\Projects\test-project\test-evosuite\target\test-classes
+  - C:\Users\Amin\Projects\test-project\test-evosuite\target\classes
+  - C:\Users\Amin\.m2\repository\org\projectlombok\lombok\1.18.28\lombok-1.18.28.jar
+  - C:\Users\Amin\.m2\repository\junit\junit\4.12\junit-4.12.jar
+  - C:\Users\Amin\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar
+* Finished analyzing classpath
+* Generating tests for class org.example.Utravel
+* Test criteria:
+  - Line Coverage
+  - Branch Coverage
+  - Exception
+  - Mutation testing (weak)
+  - Method-Output Coverage
+  - Top-Level Method Coverage
+  - No-Exception Top-Level Method Coverage
+  - Context Branch Coverage
+* Setting up search algorithm for whole suite generation
+* Loaded 66 tests from C:\Users\Amin\Projects\test-project\test-evosuite\.evosuite\evosuite-seeds\org.example.Utravel.seed
+* Total number of test goals: 
+  - Line 100
+  - Branch 69
+  - Exception 0
+  - MutationFactory 149
+  - Output 36
+  - Method 14
+  - MethodNoException 14
+  - CBranchFitnessFactory 69
+* Using seed 1689200339246
+* Starting evolution
+[MASTER] 01:49:26.179 [pool-2-thread-1] WARN  TimeController - Phase INITIALIZATION lasted too long, 5 seconds more than allowed.
+* Search finished after 129s and 102 generations, 27116 statements, best individual has fitness: 189.10912698133302
+* Writing sequences to pool
+* Minimizing test suite
+* Going to analyze the coverage criteria
+* Coverage analysis for criterion LINE
+* Coverage of criterion LINE: 77%
+* Total number of goals: 100
+* Number of covered goals: 77
+* Coverage analysis for criterion BRANCH
+* Coverage of criterion BRANCH: 70%
+* Total number of goals: 69
+* Number of covered goals: 48
+* Coverage analysis for criterion EXCEPTION
+* Coverage of criterion EXCEPTION: 100%
+* Total number of goals: 17
+* Number of covered goals: 17
+* Coverage analysis for criterion WEAKMUTATION
+* Coverage of criterion WEAKMUTATION: 58%
+* Total number of goals: 149
+* Number of covered goals: 86
+* Coverage analysis for criterion OUTPUT
+* Coverage of criterion OUTPUT: 17%
+* Total number of goals: 36
+* Number of covered goals: 6
+* Coverage analysis for criterion METHOD
+* Coverage of criterion METHOD: 100%
+* Total number of goals: 14
+* Number of covered goals: 14
+* Coverage analysis for criterion METHODNOEXCEPTION
+* Coverage of criterion METHODNOEXCEPTION: 50%
+* Total number of goals: 14
+* Number of covered goals: 7
+* Coverage analysis for criterion CBRANCH
+* Coverage of criterion CBRANCH: 70%
+* Total number of goals: 69
+* Number of covered goals: 48
+* Generated 30 tests with total length 88
+* Resulting test suite's coverage: 68% (average coverage for all fitness functions)
+* Generating assertions
+* Resulting test suite's mutation score: 27%
+* Compiling and checking tests
+[MASTER] 01:52:10.097 [pool-2-thread-1] WARN  TestSuiteGenerator - JUnit checking timed out
+[MASTER] 01:52:10.206 [pool-2-thread-1] WARN  TimeController - Phase JUNIT_CHECK lasted too long, 8 seconds more than allowed.
+* Writing JUnit test case 'Utravel_ESTest' to C:\Users\Amin\Projects\test-project\test-evosuite\.evosuite\tmp_2023_07_13_01_48_50\tests
+* Done!
+

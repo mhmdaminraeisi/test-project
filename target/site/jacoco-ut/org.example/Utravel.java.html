@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Utravel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">test-evosuite</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">Utravel.java</span></div><h1>Utravel.java</h1><pre class="source lang-java linenums">package org.example;
+
+import org.example.filter.*;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Utravel {
+<span class="fc" id="L14">    private List&lt;Flight&gt; flights = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L15">    private List&lt;User&gt; users = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L16">    private User onlineUser = null;</span>
+<span class="fc" id="L17">    private int numOfTickets = 1;</span>
+    private List&lt;Filter&gt; filters;
+<span class="fc" id="L19">    public Utravel() {</span>
+<span class="fc" id="L20">        AirlineFilter airlineFilter = new AirlineFilter();</span>
+<span class="fc" id="L21">        OriginDestinationFilter originDestinationFilter = new OriginDestinationFilter();</span>
+<span class="fc" id="L22">        CostRangeFilter costRangeFilter = new CostRangeFilter();</span>
+<span class="fc" id="L23">        TimeSpanFilter timeSpanFilter = new TimeSpanFilter();</span>
+<span class="fc" id="L24">        filters = Arrays.asList(airlineFilter,</span>
+                originDestinationFilter,
+                costRangeFilter,
+                timeSpanFilter);
+<span class="fc" id="L28">    }</span>
+    public void readFlights(String path) throws IOException {
+<span class="fc" id="L30">        try (BufferedReader br = new BufferedReader(new FileReader(path))) {</span>
+<span class="fc" id="L31">            int id = 1;</span>
+<span class="fc" id="L32">            String line = br.readLine();</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">            while ((line = br.readLine()) != null) {</span>
+<span class="fc" id="L34">                Flight flight = new Flight(id);</span>
+<span class="nc" id="L35">                flight.read(line);</span>
+<span class="nc" id="L36">                flights.add(flight);</span>
+<span class="nc" id="L37">                id += 1;</span>
+<span class="nc" id="L38">            }</span>
+        }
+<span class="fc" id="L40">    }</span>
+    public String signup(String name, String pass) {
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (usernameExists(name)) {</span>
+<span class="fc" id="L43">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="fc" id="L45">        User user = new User(name, pass);</span>
+<span class="fc" id="L46">        users.add(user);</span>
+<span class="fc" id="L47">        onlineUser = user;</span>
+<span class="fc" id="L48">        return Headers.OK;</span>
+    }
+    public String login(String name, String pass) {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for (User user : users) {</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            if (user.isLoggedIn(name, pass)) {</span>
+<span class="fc" id="L53">                onlineUser = user;</span>
+<span class="fc" id="L54">                return Headers.OK;</span>
+            }
+<span class="fc" id="L56">        }</span>
+<span class="fc" id="L57">        throw new RuntimeException(Headers.BAD_REQUEST);</span>
+    }
+    public String logout() {
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (nobodyIsOnline()) {</span>
+<span class="fc" id="L61">            throw new RuntimeException(Headers.PERMISSION_DENIED);</span>
+        }
+<span class="fc" id="L63">        deleteFilters();</span>
+<span class="fc" id="L64">        onlineUser = null;</span>
+<span class="fc" id="L65">        return Headers.OK;</span>
+    }
+    public String wallet(double amount) {
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        if (nobodyIsOnline()) {</span>
+<span class="fc" id="L69">            throw new RuntimeException(Headers.PERMISSION_DENIED);</span>
+        }
+<span class="fc" id="L71">        onlineUser.increaseCredit(amount);</span>
+<span class="fc" id="L72">        return Headers.OK;</span>
+    }
+    public String printFlights() {
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (nobodyIsOnline()) {</span>
+<span class="fc" id="L76">            throw new RuntimeException(Headers.PERMISSION_DENIED);</span>
+        }
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (flights.isEmpty()) {</span>
+<span class="fc" id="L79">            throw new RuntimeException(Headers.EMPTY);</span>
+        }
+<span class="nc" id="L81">        StringBuilder builder = new StringBuilder();</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        for (Flight flight : flights) {</span>
+<span class="nc" id="L83">            builder.append(flight.toString(false));</span>
+<span class="nc" id="L84">        }</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (builder.toString().equals(Headers.EMPTY_STRING)) {</span>
+<span class="nc" id="L86">            throw new RuntimeException(Headers.EMPTY);</span>
+        }
+<span class="nc" id="L88">        return builder.toString();</span>
+    }
+    public String printFlight(int id) {
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (nobodyIsOnline()) {</span>
+<span class="fc" id="L92">            throw new RuntimeException(Headers.PERMISSION_DENIED);</span>
+        }
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">        if (idIsUnAvailable(id)) {</span>
+<span class="fc" id="L95">            throw new RuntimeException(Headers.NOT_FOUND);</span>
+        }
+<span class="nc" id="L97">        return flights.get(id - 1).toString(true);</span>
+    }
+    public String buyTicket(int flightId, int quantity, String fClass, String tType) {
+<span class="fc bfc" id="L100" title="All 2 branches covered.">        if (nobodyIsOnline()) {</span>
+<span class="fc" id="L101">            throw new RuntimeException(Headers.PERMISSION_DENIED);</span>
+        }
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">        if (idIsUnAvailable(flightId)) {</span>
+<span class="fc" id="L104">            throw new RuntimeException(Headers.NOT_FOUND);</span>
+        }
+<span class="nc" id="L106">        numOfTickets += 1;</span>
+<span class="nc" id="L107">        return onlineUser.buyTicket(numOfTickets - 1, flights.get(flightId - 1), quantity, fClass, tType);</span>
+    }
+    public String printTickets() {
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">        if (nobodyIsOnline()) {</span>
+<span class="fc" id="L111">            throw new RuntimeException(Headers.PERMISSION_DENIED);</span>
+        }
+<span class="nc" id="L113">        return onlineUser.printTickets();</span>
+    }
+    public String printTicket(int id) {
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">        if (nobodyIsOnline()) {</span>
+<span class="fc" id="L117">            throw new RuntimeException(Headers.PERMISSION_DENIED);</span>
+        }
+<span class="nc" id="L119">        return onlineUser.printTicket(id);</span>
+    }
+    public String cancelTicket(int id) {
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">        if (nobodyIsOnline()) {</span>
+<span class="fc" id="L123">            throw new RuntimeException(Headers.PERMISSION_DENIED);</span>
+        }
+<span class="nc" id="L125">        return onlineUser.cancelTicket(id);</span>
+    }
+    public String applyFilter(Input input) {
+<span class="fc bfc" id="L128" title="All 2 branches covered.">        if (nobodyIsOnline()) {</span>
+<span class="fc" id="L129">            throw new RuntimeException(Headers.PERMISSION_DENIED);</span>
+        }
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        for (Filter filter : filters) {</span>
+<span class="fc" id="L132">            filter.read(input);</span>
+<span class="fc" id="L133">        }</span>
+<span class="fc" id="L134">        boolean filterApplied = false;</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        for (Filter filter : filters) {</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">            if (filter.apply(flights)) {</span>
+<span class="fc" id="L137">                filterApplied = true;</span>
+            }
+<span class="fc" id="L139">        }</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">        if (!filterApplied) {</span>
+<span class="nc" id="L141">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="fc" id="L143">        return Headers.OK;</span>
+    }
+    public String deleteFilters() {
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        if (nobodyIsOnline()) {</span>
+<span class="fc" id="L147">            throw new RuntimeException(Headers.PERMISSION_DENIED);</span>
+        }
+<span class="pc bpc" id="L149" title="1 of 2 branches missed.">        for (Flight flight : flights) {</span>
+<span class="nc" id="L150">            flight.deleteFilters();</span>
+<span class="nc" id="L151">        }</span>
+<span class="fc" id="L152">        return Headers.OK;</span>
+    }
+    private boolean usernameExists(String name) {
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        for (User user : users) {</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">            if (user.nameIsSame(name)) {</span>
+<span class="fc" id="L157">                return true;</span>
+            }
+<span class="fc" id="L159">        }</span>
+<span class="fc" id="L160">        return false;</span>
+    }
+    private boolean nobodyIsOnline() {
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        return onlineUser == null;</span>
+    }
+    private boolean idIsUnAvailable(int id) {
+<span class="pc bpc" id="L166" title="1 of 4 branches missed.">        return id &gt;= flights.size() || id &lt; 0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

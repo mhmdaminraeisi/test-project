@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Ticket.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">test-evosuite</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">Ticket.java</span></div><h1>Ticket.java</h1><pre class="source lang-java linenums">package org.example;
+
+import lombok.Getter;
+
+public class Ticket {
+<span class="fc" id="L6">    @Getter</span>
+    private int id;
+    private int quantity;
+<span class="fc" id="L9">    @Getter</span>
+    private double price;
+    private Flight flight;
+    private String flightClass;
+    private String ticketType;
+<span class="fc" id="L14">    public Ticket(int i, int q, Flight f, String fc, String tt) {</span>
+<span class="fc bfc" id="L15" title="All 8 branches covered.">        if (!flightClassIsOk(fc) || !ticketTypeIsOk(tt) || i &lt;= 0 || q &lt;= 0) {</span>
+<span class="fc" id="L16">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="fc" id="L18">        f.updateCapacity(q, fc);</span>
+<span class="fc" id="L19">        id = i;</span>
+<span class="fc" id="L20">        price = f.calculateCost(q, fc);</span>
+<span class="fc" id="L21">        quantity = q;</span>
+<span class="fc" id="L22">        flight = f;</span>
+<span class="fc" id="L23">        flightClass = fc;</span>
+<span class="fc" id="L24">        ticketType = tt;</span>
+<span class="fc" id="L25">    }</span>
+    public void calculateCost(double credit) {
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (price &gt; credit) {</span>
+<span class="fc" id="L28">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="fc" id="L30">        credit -= price;</span>
+<span class="fc" id="L31">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L35">        return id + Headers.SHOW_DELIMITER +</span>
+<span class="fc" id="L36">                flight.printForTicket(quantity) +</span>
+                flightClass + Headers.SHOW_DELIMITER +
+                ticketType + Headers.SHOW_DELIMITER +
+<span class="fc" id="L39">                Math.round(price * 100.0) / 100.0 + &quot;\n&quot;;</span>
+    }
+    public boolean cancel() {
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        if (ticketType.equals(Headers.SYSTEMI)) {</span>
+<span class="fc" id="L43">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="nc" id="L45">        flight.updateCapacity(-quantity, flightClass);</span>
+<span class="nc" id="L46">        return true;</span>
+    }
+    private boolean flightClassIsOk(String fClass) {
+<span class="fc bfc" id="L49" title="All 4 branches covered.">        return fClass.equals(Headers.ECONOMY) || fClass.equals(Headers.BUSINESS);</span>
+    }
+    private boolean ticketTypeIsOk(String tType) {
+<span class="fc bfc" id="L52" title="All 4 branches covered.">        return tType.equals(Headers.SYSTEMI) || tType.equals(Headers.CHARTERY);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+test-evosuite,org.example.filter,Input,48,75,0,0,1,13,12,13,12,13
+test-evosuite,org.example.filter,Filter,0,3,0,0,0,1,0,1,0,1
+test-evosuite,org.example.filter,OriginDestinationFilter,13,30,3,3,3,7,3,3,0,3
+test-evosuite,org.example.filter,CostRangeFilter,25,59,11,9,4,10,10,3,0,3
+test-evosuite,org.example.filter,AirlineFilter,17,15,3,1,4,5,2,3,0,3
+test-evosuite,org.example.filter,TimeSpanFilter,39,53,13,5,5,14,9,3,0,3
+test-evosuite,org.example,Time,7,86,0,6,2,20,0,10,0,7
+test-evosuite,org.example,User,93,85,9,9,18,18,7,10,1,7
+test-evosuite,org.example,FileScanner,0,37,0,2,0,9,0,3,0,2
+test-evosuite,org.example,Flight,51,395,2,50,9,62,2,38,0,14
+test-evosuite,org.example,Main,6,31,1,1,2,11,1,2,0,2
+test-evosuite,org.example,Functions,331,208,42,29,63,47,32,23,1,15
+test-evosuite,org.example,Headers,0,24,0,0,0,2,0,2,0,2
+test-evosuite,org.example,Ticket,10,138,1,19,2,24,1,17,0,8
+test-evosuite,org.example,Utravel,106,341,13,45,20,79,11,35,0,17

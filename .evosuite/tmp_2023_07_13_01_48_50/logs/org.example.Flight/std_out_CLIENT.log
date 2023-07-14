@@ -1,0 +1,77 @@
+* Starting client
+* Connecting to master process on port 11535
+* Analyzing classpath: 
+  - C:\Users\Amin\Projects\test-project\test-evosuite\target\test-classes
+  - C:\Users\Amin\Projects\test-project\test-evosuite\target\classes
+  - C:\Users\Amin\.m2\repository\org\projectlombok\lombok\1.18.28\lombok-1.18.28.jar
+  - C:\Users\Amin\.m2\repository\junit\junit\4.12\junit-4.12.jar
+  - C:\Users\Amin\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar
+* Finished analyzing classpath
+* Generating tests for class org.example.Flight
+* Test criteria:
+  - Line Coverage
+  - Branch Coverage
+  - Exception
+  - Mutation testing (weak)
+  - Method-Output Coverage
+  - Top-Level Method Coverage
+  - No-Exception Top-Level Method Coverage
+  - Context Branch Coverage
+* Setting up search algorithm for whole suite generation
+* Loaded 57 tests from C:\Users\Amin\Projects\test-project\test-evosuite\.evosuite\evosuite-seeds\org.example.Flight.seed
+* Total number of test goals: 
+  - Line 71
+  - Branch 57
+  - Exception 0
+  - MutationFactory 301
+  - Output 9
+  - Method 11
+  - MethodNoException 11
+  - CBranchFitnessFactory 57
+* Using seed 1689200338789
+* Starting evolution
+* Search finished after 107s and 117 generations, 57232 statements, best individual has fitness: 69.99999998467185
+* Writing sequences to pool
+* Minimizing test suite
+* Going to analyze the coverage criteria
+* Coverage analysis for criterion LINE
+* Coverage of criterion LINE: 89%
+* Total number of goals: 71
+* Number of covered goals: 63
+* Coverage analysis for criterion BRANCH
+* Coverage of criterion BRANCH: 96%
+* Total number of goals: 57
+* Number of covered goals: 55
+* Coverage analysis for criterion EXCEPTION
+* Coverage of criterion EXCEPTION: 100%
+* Total number of goals: 8
+* Number of covered goals: 8
+* Coverage analysis for criterion WEAKMUTATION
+* Coverage of criterion WEAKMUTATION: 79%
+* Total number of goals: 301
+* Number of covered goals: 238
+* Coverage analysis for criterion OUTPUT
+* Coverage of criterion OUTPUT: 44%
+* Total number of goals: 9
+* Number of covered goals: 4
+* Coverage analysis for criterion METHOD
+* Coverage of criterion METHOD: 100%
+* Total number of goals: 11
+* Number of covered goals: 11
+* Coverage analysis for criterion METHODNOEXCEPTION
+* Coverage of criterion METHODNOEXCEPTION: 91%
+* Total number of goals: 11
+* Number of covered goals: 10
+* Coverage analysis for criterion CBRANCH
+* Coverage of criterion CBRANCH: 96%
+* Total number of goals: 57
+* Number of covered goals: 55
+* Generated 36 tests with total length 83
+* Resulting test suite's coverage: 87% (average coverage for all fitness functions)
+* Generating assertions
+* Resulting test suite's mutation score: 33%
+* Compiling and checking tests
+[MASTER] 01:51:31.156 [pool-2-thread-1] WARN  TestSuiteGenerator - JUnit checking timed out
+* Writing JUnit test case 'Flight_ESTest' to C:\Users\Amin\Projects\test-project\test-evosuite\.evosuite\tmp_2023_07_13_01_48_50\tests
+* Done!
+

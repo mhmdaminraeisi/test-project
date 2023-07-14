@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Functions.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">test-evosuite</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">Functions.java</span></div><h1>Functions.java</h1><pre class="source lang-java linenums">package org.example;
+
+import org.example.filter.Input;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+<span class="fc" id="L9">public class Functions {</span>
+    public static String splitFirstSign(String input) {
+<span class="fc bfc" id="L11" title="All 2 branches covered.">        if (input.charAt(1) != Headers.THE_SIGN) {</span>
+<span class="fc" id="L12">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="fc" id="L14">        return input.substring(input.indexOf(Headers.THE_SIGN) + 2);</span>
+    }
+    public static int readId(String input) {
+<span class="fc" id="L17">        input = splitFirstSign(input);</span>
+<span class="fc" id="L18">        String[] inputs = input.split(Headers.SHOW_DELIMITER);</span>
+<span class="pc bpc" id="L19" title="1 of 2 branches missed.">        if (!inputs[0].equals(Headers.ID)) {</span>
+<span class="fc" id="L20">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="nc" id="L22">        return Integer.parseInt(inputs[1]);</span>
+    }
+    public static List&lt;String&gt; readNameAndPass(String input) {
+<span class="fc" id="L25">        String[] inputs = input.split(Headers.SHOW_DELIMITER);</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (inputs.length != 4) {</span>
+<span class="fc" id="L27">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="nc bnc" id="L29" title="All 4 branches missed.">        if (!inputs[0].equals(Headers.USERNAME) || !inputs[2].equals(Headers.PASSWORD)) {</span>
+<span class="nc" id="L30">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="nc" id="L32">        return new ArrayList&lt;&gt;(Arrays.asList(inputs[1], inputs[3]));</span>
+    }
+    public static String signup(String input, Utravel utravel) {
+<span class="fc" id="L35">        input = splitFirstSign(input);</span>
+<span class="nc" id="L36">        List&lt;String&gt; nameAndPass = readNameAndPass(input);</span>
+<span class="nc" id="L37">        return utravel.signup(nameAndPass.get(0), nameAndPass.get(1));</span>
+    }
+    public static String login(String input, Utravel utravel) {
+<span class="fc" id="L40">        input = splitFirstSign(input);</span>
+<span class="nc" id="L41">        List&lt;String&gt; nameAndPass = readNameAndPass(input);</span>
+<span class="nc" id="L42">        return utravel.login(nameAndPass.get(0), nameAndPass.get(1));</span>
+    }
+    public static String wallet(String input, Utravel utravel) {
+<span class="fc" id="L45">        input = splitFirstSign(input);</span>
+<span class="fc" id="L46">        String[] inputs = input.split(Headers.SHOW_DELIMITER);</span>
+<span class="pc bpc" id="L47" title="5 of 6 branches missed.">        if (inputs.length != 2 || !inputs[0].equals(Headers.AMOUNT) || inputs[1].length() == 0) {</span>
+<span class="fc" id="L48">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="nc" id="L50">        return utravel.wallet(Double.parseDouble(inputs[1]));</span>
+    }
+    public static String showFlights(String input, Utravel utravel) {
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        if (input.length() == 0) {</span>
+<span class="nc" id="L54">            return utravel.printFlights();</span>
+        }
+<span class="nc" id="L56">        int id = readId(input);</span>
+<span class="nc" id="L57">        return utravel.printFlight(id);</span>
+    }
+    public static String buyTicket(String input, Utravel utravel) {
+<span class="fc" id="L60">        input = splitFirstSign(input);</span>
+<span class="fc" id="L61">        String[] inputs = input.split(Headers.SHOW_DELIMITER);</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        if (inputs.length != 8) {</span>
+<span class="fc" id="L63">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (!inputs[0].equals(Headers.FLIGHT) ||</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            !inputs[2].equals(Headers.QUANTITY) ||</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            !inputs[4].equals(Headers.CLASS) ||</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            !inputs[6].equals(Headers.TYPE)) {</span>
+<span class="nc" id="L69">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="nc" id="L71">        return utravel.buyTicket(Integer.parseInt(inputs[1]),</span>
+<span class="nc" id="L72">                Integer.parseInt(inputs[3]), inputs[5], inputs[7]);</span>
+    }
+    public static String showTickets(String input, Utravel utravel) {
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">        if (input.length() == 0) {</span>
+<span class="nc" id="L76">            return utravel.printTickets();</span>
+        }
+<span class="nc" id="L78">        int id = readId(input);</span>
+<span class="nc" id="L79">        return utravel.printTicket(id);</span>
+    }
+    public static String cancelTicket(String input, Utravel utravel) {
+<span class="nc" id="L82">        int id = readId(input);</span>
+<span class="nc" id="L83">        return utravel.cancelTicket(id);</span>
+    }
+    public static String applyFilter(String inp, Utravel utravel) {
+<span class="fc" id="L86">        inp = splitFirstSign(inp);</span>
+<span class="fc" id="L87">        String[] inputs = inp.split(Headers.SHOW_DELIMITER);</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">        if (inputs.length % 2 == 1) {</span>
+<span class="fc" id="L89">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="nc" id="L91">        Input input = Headers.EMPTY_INPUT;</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        for (int i = 0; i &lt; inputs.length; i += 2) {</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (inputs[i+1].length() == 0) {</span>
+<span class="nc" id="L94">                throw new RuntimeException(Headers.BAD_REQUEST);</span>
+            }
+<span class="nc" id="L96">            String title = inputs[i];</span>
+<span class="nc bnc" id="L97" title="All 9 branches missed.">            switch (title) {</span>
+                case Headers.FROM:
+<span class="nc" id="L99">                    input.setOrigin(inputs[i+1]);</span>
+<span class="nc" id="L100">                    break;</span>
+                case Headers.TO:
+<span class="nc" id="L102">                    input.setDestination(inputs[i+1]);</span>
+<span class="nc" id="L103">                    break;</span>
+                case Headers.MIN_PRICE:
+<span class="nc" id="L105">                    input.setMinPrice(Double.parseDouble(inputs[i+1]));</span>
+<span class="nc" id="L106">                    break;</span>
+                case Headers.MAX_PRICE:
+<span class="nc" id="L108">                    input.setMaxPrice(Double.parseDouble(inputs[i+1]));</span>
+<span class="nc" id="L109">                    break;</span>
+                case Headers.AIRLINE:
+<span class="nc" id="L111">                    input.setAirline(inputs[i+1]);</span>
+<span class="nc" id="L112">                    break;</span>
+                case Headers.DEPARTURE_DATE:
+<span class="nc" id="L114">                    input.setDepartureDate(Integer.parseInt(inputs[i+1]));</span>
+<span class="nc" id="L115">                    break;</span>
+                case Headers.MIN_DEPARTURE_TIME:
+<span class="nc" id="L117">                    input.getMinTime().set(inputs[i+1]);</span>
+<span class="nc" id="L118">                    input.setMinTimeEntered(true);</span>
+<span class="nc" id="L119">                    break;</span>
+                case Headers.MAX_DEPARTURE_TIME:
+<span class="nc" id="L121">                    input.getMaxTime().set(inputs[i+1]);</span>
+<span class="nc" id="L122">                    input.setMaxTimeEntered(true);</span>
+<span class="nc" id="L123">                    break;</span>
+                default:
+<span class="nc" id="L125">                    throw new RuntimeException(Headers.BAD_REQUEST);</span>
+            }
+        }
+<span class="nc" id="L128">        return utravel.applyFilter(input);</span>
+    }
+    public static String doGetCommands(String command, String input, Utravel utravel) {
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        if (command.equals(Headers.FLIGHTS)) {</span>
+<span class="nc" id="L132">            return showFlights(input, utravel);</span>
+        }
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">        if (command.equals(Headers.TICKETS)) {</span>
+<span class="nc" id="L135">            return showTickets(input, utravel);</span>
+        }
+<span class="fc" id="L137">        throw new RuntimeException(Headers.NOT_FOUND);</span>
+    }
+    public static String doPostCommand(String command, String input, Utravel utravel) {
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">        if (command.equals(Headers.SIGNUP)) {</span>
+<span class="nc" id="L141">            return signup(input, utravel);</span>
+        }
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        if (command.equals(Headers.LOGIN)) {</span>
+<span class="nc" id="L144">            return login(input, utravel);</span>
+        }
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        if (command.equals(Headers.LOGOUT)) {</span>
+<span class="nc" id="L147">            return utravel.logout();</span>
+        }
+<span class="pc bpc" id="L149" title="1 of 2 branches missed.">        if (command.equals(Headers.WALLET)) {</span>
+<span class="nc" id="L150">            return wallet(input, utravel);</span>
+        }
+<span class="fc bfc" id="L152" title="All 2 branches covered.">        if (command.equals(Headers.FILTERS)) {</span>
+<span class="nc" id="L153">            return applyFilter(input, utravel);</span>
+        }
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        if (command.equals(Headers.TICKETS)) {</span>
+<span class="nc" id="L156">            return buyTicket(input, utravel);</span>
+        }
+<span class="fc" id="L158">        throw new RuntimeException(Headers.NOT_FOUND);</span>
+    }
+    public static String doDeleteCommand(String command, String input, Utravel utravel) {
+<span class="fc bfc" id="L161" title="All 2 branches covered.">        if (command.equals(Headers.TICKETS)) {</span>
+<span class="nc" id="L162">            return cancelTicket(input, utravel);</span>
+        }
+<span class="fc bfc" id="L164" title="All 2 branches covered.">        if (command.equals(Headers.FILTERS)) {</span>
+<span class="nc" id="L165">            return utravel.deleteFilters();</span>
+        }
+<span class="fc" id="L167">        throw new RuntimeException(Headers.NOT_FOUND);</span>
+    }
+    public static String doCommand(String commandLine, Utravel utravel) {
+<span class="fc" id="L170">        String firstPart = commandLine.split(Headers.SHOW_DELIMITER)[0];</span>
+<span class="fc" id="L171">        String command = commandLine.split(Headers.SHOW_DELIMITER)[1];</span>
+<span class="fc" id="L172">        String another = commandLine.substring(firstPart.length() + command.length() + 1);</span>
+<span class="pc bpc" id="L173" title="1 of 2 branches missed.">        if (firstPart.equals(Headers.GET)) {</span>
+<span class="nc" id="L174">            return doGetCommands(command, another, utravel);</span>
+        }
+<span class="pc bpc" id="L176" title="1 of 2 branches missed.">        if (firstPart.equals(Headers.POST)) {</span>
+<span class="nc" id="L177">            return doPostCommand(command, another, utravel);</span>
+        }
+<span class="pc bpc" id="L179" title="1 of 2 branches missed.">        if (firstPart.equals(Headers.DELETE)) {</span>
+<span class="nc" id="L180">            return doDeleteCommand(command, another, utravel);</span>
+        }
+<span class="fc" id="L182">        throw new RuntimeException(Headers.BAD_REQUEST);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

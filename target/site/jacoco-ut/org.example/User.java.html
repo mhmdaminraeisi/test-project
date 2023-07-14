@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">test-evosuite</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package org.example;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class User {
+    private String username;
+    private String password;
+<span class="fc" id="L9">    private double credit = 0.0;</span>
+<span class="fc" id="L10">    private List&lt;Ticket&gt; tickets = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L12">    public User(String name, String pass) {</span>
+<span class="fc" id="L13">        username = name;</span>
+<span class="fc" id="L14">        password = pass;</span>
+<span class="fc" id="L15">    }</span>
+    public boolean isLoggedIn(String name, String pass) {
+<span class="fc bfc" id="L17" title="All 4 branches covered.">        return username.equals(name) &amp;&amp; password.equals(pass);</span>
+    }
+    public boolean nameIsSame(String name) {
+<span class="fc" id="L20">        return username.equals(name);</span>
+    }
+    public void increaseCredit(double amount) {
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if (amount &lt;= 0) {</span>
+<span class="fc" id="L24">            throw new RuntimeException(Headers.BAD_REQUEST);</span>
+        }
+<span class="fc" id="L26">        credit += amount;</span>
+<span class="fc" id="L27">    }</span>
+    public String buyTicket(int id, Flight flight, int quantity, String fClass, String tType) {
+<span class="nc" id="L29">        Ticket ticket = new Ticket(id, quantity, flight, fClass, tType);</span>
+<span class="nc" id="L30">        ticket.calculateCost(credit);</span>
+<span class="nc" id="L31">        tickets.add(ticket);</span>
+<span class="nc" id="L32">        return id + &quot;\n&quot;;</span>
+    }
+    public String printTickets() {
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if (tickets.isEmpty()) {</span>
+<span class="fc" id="L36">            throw new RuntimeException(Headers.EMPTY);</span>
+        }
+<span class="nc" id="L38">        StringBuilder builder = new StringBuilder();</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        for (Ticket ticket : tickets) {</span>
+<span class="nc" id="L40">            builder.append(ticket);</span>
+<span class="nc" id="L41">        }</span>
+<span class="nc" id="L42">        return builder.toString();</span>
+    }
+    public String printTicket(int id) {
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        for (Ticket ticket : tickets) {</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            if (ticket.getId() == id) {</span>
+<span class="nc" id="L47">                return ticket.toString();</span>
+            }
+<span class="nc" id="L49">        }</span>
+<span class="fc" id="L50">        throw new RuntimeException(Headers.NOT_FOUND);</span>
+    }
+    public String cancelTicket(int id) {
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        for (int i = 0; i &lt; tickets.size(); i++) {</span>
+<span class="nc" id="L54">            Ticket ticket = tickets.get(i);</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (ticket.getId() == id) {</span>
+<span class="nc" id="L56">                ticket.cancel();</span>
+<span class="nc" id="L57">                credit += ticket.getPrice() / 2;</span>
+<span class="nc" id="L58">                tickets.remove(i);</span>
+<span class="nc" id="L59">                return Headers.OK;</span>
+            }
+        }
+<span class="fc" id="L62">        throw new RuntimeException(Headers.NOT_FOUND);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>
