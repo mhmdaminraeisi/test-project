@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.Functions_ESTest" time="0.136" tests="52" errors="0" skipped="0" failures="0">
+<testsuite name="org.example.Functions_ESTest" time="0.128" tests="52" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-8\jre\bin"/>
     <property name="java.vm.version" value="25.372-b07"/>
-    <property name="cores" value="6"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\Amin\Projects\test-project\test-evosuite"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\Amin\Projects\test-project\test-project"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -17,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\Amin\Projects\test-project\test-evosuite"/>
+    <property name="user.dir" value="C:\Users\Amin\Projects\test-project\test-project"/>
     <property name="java.runtime.version" value="1.8.0_372-372-b07"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk-8\jre\lib\endorsed"/>
@@ -39,7 +38,6 @@
     <property name="user.home" value="C:\Users\Amin"/>
     <property name="user.timezone" value="GMT+03:30"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
-    <property name="memoryInMB" value="4000"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="user.name" value="Amin"/>
@@ -47,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-8\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -DmemoryInMB=4000 -Dcores=6 evosuite:generate evosuite:export test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -68,55 +66,55 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase name="test26" classname="org.example.Functions_ESTest" time="0.016"/>
-  <testcase name="test27" classname="org.example.Functions_ESTest" time="0.006"/>
-  <testcase name="test24" classname="org.example.Functions_ESTest" time="0.004"/>
-  <testcase name="test25" classname="org.example.Functions_ESTest" time="0.003"/>
-  <testcase name="test22" classname="org.example.Functions_ESTest" time="0.003"/>
-  <testcase name="test23" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test20" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test21" classname="org.example.Functions_ESTest" time="0.008"/>
-  <testcase name="test28" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test29" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test30" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test37" classname="org.example.Functions_ESTest" time="0.007"/>
-  <testcase name="test38" classname="org.example.Functions_ESTest" time="0.004"/>
-  <testcase name="test35" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test36" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test27" classname="org.example.Functions_ESTest" time="0.004"/>
+  <testcase name="test24" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test25" classname="org.example.Functions_ESTest" time="0.004"/>
+  <testcase name="test22" classname="org.example.Functions_ESTest" time="0.004"/>
+  <testcase name="test23" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test20" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test21" classname="org.example.Functions_ESTest" time="0.004"/>
+  <testcase name="test28" classname="org.example.Functions_ESTest" time="0.003"/>
+  <testcase name="test29" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test30" classname="org.example.Functions_ESTest" time="0.003"/>
+  <testcase name="test37" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test38" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test35" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test36" classname="org.example.Functions_ESTest" time="0.002"/>
   <testcase name="test33" classname="org.example.Functions_ESTest" time="0.005"/>
-  <testcase name="test34" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test31" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test34" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test31" classname="org.example.Functions_ESTest" time="0.001"/>
   <testcase name="test32" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test39" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test40" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test41" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test39" classname="org.example.Functions_ESTest" time="0.003"/>
+  <testcase name="test40" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test41" classname="org.example.Functions_ESTest" time="0.001"/>
   <testcase name="test04" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test48" classname="org.example.Functions_ESTest" time="0.006"/>
-  <testcase name="test05" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test49" classname="org.example.Functions_ESTest" time="0.006"/>
-  <testcase name="test02" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test46" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test48" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test05" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test49" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test02" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test46" classname="org.example.Functions_ESTest" time="0.002"/>
   <testcase name="test03" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test47" classname="org.example.Functions_ESTest" time="0.003"/>
-  <testcase name="test00" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test47" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test00" classname="org.example.Functions_ESTest" time="0.001"/>
   <testcase name="test44" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test01" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test01" classname="org.example.Functions_ESTest" time="0.002"/>
   <testcase name="test45" classname="org.example.Functions_ESTest" time="0.002"/>
   <testcase name="test42" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test43" classname="org.example.Functions_ESTest" time="0.003"/>
-  <testcase name="test08" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test09" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test06" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test07" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test51" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test50" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test43" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test08" classname="org.example.Functions_ESTest" time="0.003"/>
+  <testcase name="test09" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test06" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test07" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test51" classname="org.example.Functions_ESTest" time="0.003"/>
+  <testcase name="test50" classname="org.example.Functions_ESTest" time="0.001"/>
   <testcase name="test15" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test16" classname="org.example.Functions_ESTest" time="0.004"/>
+  <testcase name="test16" classname="org.example.Functions_ESTest" time="0.001"/>
   <testcase name="test13" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test14" classname="org.example.Functions_ESTest" time="0.003"/>
-  <testcase name="test11" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test14" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test11" classname="org.example.Functions_ESTest" time="0.002"/>
   <testcase name="test12" classname="org.example.Functions_ESTest" time="0.001"/>
   <testcase name="test10" classname="org.example.Functions_ESTest" time="0.001"/>
   <testcase name="test19" classname="org.example.Functions_ESTest" time="0.002"/>
-  <testcase name="test17" classname="org.example.Functions_ESTest" time="0.001"/>
-  <testcase name="test18" classname="org.example.Functions_ESTest" time="0.001"/>
+  <testcase name="test17" classname="org.example.Functions_ESTest" time="0.002"/>
+  <testcase name="test18" classname="org.example.Functions_ESTest" time="0.013"/>
 </testsuite>
